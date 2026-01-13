@@ -1,0 +1,21 @@
+module.exports = {
+  apiKey: process.env.OPENAI_API_KEY,
+  model: 'gpt-4.1',
+  prompts: {
+    'lei-do-bem': {
+      prompt: 'prompts/arquivo1.txt',
+      cmd: [
+        'git --no-pager log -n 10',
+        'git status --short',
+        'ls -la'
+      ]
+    },
+    'dev-standards': {
+      prompt: 'prompts/arquivo2.txt',
+      cmd: [
+        'cat composer.json',
+        'ls src'
+      ]
+    }
+  }
+};

@@ -1,0 +1,21 @@
+{
+  "author": "RafaelCecchin",
+  "license": "ISC",
+  "name": "promptctl",
+  "description": "Execute prompts with real project context",
+  "version": "0.1.0",
+  "private": false,
+  "main": "promptctl.js",
+  "bin": {
+    "promptctl": "bin/promptctl.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "openai": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "promptctl": "node promptctl.js"
+  }
+}
