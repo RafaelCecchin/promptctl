@@ -1,5 +1,7 @@
-import fs from 'fs';
+const fs = require('fs');
 
-export function loadPrompt(p) {
-  return fs.readFileSync(p, 'utf-8');
+function loadPrompt(filePath) {
+  return fs.readFileSync(filePath, 'utf-8');
 }
+
+module.exports = { loadPrompt };

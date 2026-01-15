@@ -1,8 +1,16 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+require('dotenv').config();
+const path = require('path');
 
-export function loadConfig() {
-  const cwd = process.cwd();
-  const cfgPath = path.join(cwd, 'promptctl.config.js');
-  return require(cfgPath);
+function loadConfig() {
+  const cfgPath = path.join(process.cwd(), 'promptctl.config.js');
+  
+  try {
+    return require(cfgPath);
+  } catch (err) {
+    console.error('Erro ao carregar promptctl.config.js');
+    console.error(err.message);
+    process.exit(1);
+  }
 }
+
+module.exports = { loadConfig };

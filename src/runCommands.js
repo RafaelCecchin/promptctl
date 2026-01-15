@@ -1,11 +1,19 @@
-import { execSync } from 'child_process';
+const { execSync } = require('child_process');
 
-export function runCommands(cmds) {
-  return cmds.map(c => {
+function runCommands(cmds) {
+  return cmds.map(cmd => {
     try {
-      return { cmd: c, output: execSync(c, { encoding: 'utf-8' }) };
+      return {
+        cmd,
+        output: execSync(cmd, { encoding: 'utf-8' })
+      };
     } catch (e) {
-      return { cmd: c, output: e.message };
+      return {
+        cmd,
+        output: e.message
+      };
     }
   });
 }
+
+module.exports = { runCommands };
