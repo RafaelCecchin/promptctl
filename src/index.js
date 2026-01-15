@@ -1,21 +1,25 @@
-import { loadConfig } from './loadConfig.js';
-import { loadPrompt } from './loadPrompt.js';
-import { runCommands } from './runCommands.js';
-import { buildPrompt } from './buildPrompt.js';
-import { callOpenAI } from './openai.js';
-import { showMarkdown } from './showMarkdown.js';
+const { loadConfig } = require('./loadConfig');
+const { loadPrompt } = require('./loadPrompt');
+const { runCommands } = require('./runCommands');
+const { buildPrompt } = require('./buildPrompt');
+const { callGemini } = require('./gemini');
+const { showMarkdown } = require('./showMarkdown');
 
-export async function run(name) {
+async function run(name) {
   const config = loadConfig();
-  const promptCfg = config.prompts[name];
 
-  if (!promptCfg) {
-    throw new Error(`Prompt '${name}' não encontrado`);
+  if (!config.prompts || !config.prompts[name]) {
+    console.error(`Prompt '${name}' não encontrado`);
+    process.exit(1);
   }
 
+  const promptCfg = config.prompts[name];
   const promptText = loadPrompt(promptCfg.prompt);
   const cmdOutput = runCommands(promptCfg.cmd || []);
   const finalPrompt = buildPrompt(promptText, cmdOutput, name);
-  const answer = await callOpenAI(config, finalPrompt);
+  const answer = await callGemini(config, finalPrompt);
+
   showMarkdown(answer, name);
 }
+
+module.exports = { run };

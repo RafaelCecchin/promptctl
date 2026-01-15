@@ -1,10 +1,14 @@
-import fs from 'fs';
-import os from 'os';
-import path from 'path';
-import { exec } from 'child_process';
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const { exec } = require('child_process');
 
-export function showMarkdown(md, name) {
+function showMarkdown(md, name) {
   const file = path.join(os.tmpdir(), `promptctl-${name}.md`);
   fs.writeFileSync(file, md);
-  exec(`code --reuse-window --preview ${file}`);
+  cmd = `code --reuse-window "${file}"`;
+  console.log(cmd);
+  exec(cmd);
 }
+
+module.exports = { showMarkdown };

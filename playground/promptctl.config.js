@@ -1,7 +1,6 @@
 module.exports = {
-  apiKey: process.env.OPENAI_API_KEY,
-  model: 'gpt-4.1',
-
+  apiKey: process.env.GEMINI_API_KEY,
+  model: 'gemini-2.5-flash',
   prompts: {
     test: {
       prompt: 'prompts\\test.txt',

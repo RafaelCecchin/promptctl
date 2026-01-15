@@ -1,20 +1,11 @@
 module.exports = {
-  apiKey: process.env.OPENAI_API_KEY,
-  model: 'gpt-4.1',
+  apiKey: process.env.GEMINI_API_KEY,
+  model: 'gemini-2.5-flash',
   prompts: {
-    'lei-do-bem': {
-      prompt: 'prompts/arquivo1.txt',
+    test: {
+      prompt: 'prompts\\test.txt',
       cmd: [
-        'git --no-pager log -n 10',
-        'git status --short',
-        'ls -la'
-      ]
-    },
-    'dev-standards': {
-      prompt: 'prompts/arquivo2.txt',
-      cmd: [
-        'cat composer.json',
-        'ls src'
+        'echo teste funcionando'
       ]
     }
   }
