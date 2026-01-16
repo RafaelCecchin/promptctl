@@ -19,7 +19,7 @@ async function run(name) {
   const finalPrompt = buildPrompt(promptText, cmdOutput, name);
   const answer = await callGemini(config, finalPrompt);
 
-  showMarkdown(answer, name);
+  showMarkdown(answer, name, promptCfg.codePath || 'code');
 }
 
 module.exports = { run };
